@@ -4,10 +4,11 @@ import { color } from "../styles/theme";
 interface IInput {
 	type: string;
 	placeholder: string;
+	onChange: (value: string) => void;
 }
 
-const Input = ({ type, placeholder }: IInput) => {
-	return <InputBox type={type} placeholder={placeholder}></InputBox>;
+const Input = ({ type, placeholder, onChange }: IInput) => {
+	return <InputBox type={type} placeholder={placeholder} onChange={onChange} />;
 };
 
 const InputBox = styled.input`

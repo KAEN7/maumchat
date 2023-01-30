@@ -1,13 +1,12 @@
 import React from "react";
-import Head from "next/head";
+import styled from "styled-components";
 import Link from "next/link";
+import { page } from "../styles/theme";
 
 function ChatRoom() {
 	return (
-		<React.Fragment>
-			<Head>
-				<title>ChatRoom - Nextron (with-typescript)</title>
-			</Head>
+		<CharRoomSection>
+			<Link href="/home">asdf</Link>
 			<div>
 				<p>
 					⚡ Electron + Next.js ⚡ -
@@ -17,8 +16,12 @@ function ChatRoom() {
 				</p>
 				<img src="/images/logo.png" />
 			</div>
-		</React.Fragment>
+		</CharRoomSection>
 	);
 }
+
+const CharRoomSection = styled.section`
+	${page}
+`;
 
 export default ChatRoom;

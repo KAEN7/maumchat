@@ -1,9 +1,13 @@
 module.exports = {
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.target = 'electron-renderer';
-    }
+	reactStrictMode: true,
+	env: {
+		BASE_URL: process.env.BASE_URL,
+	},
+	webpack: (config, { isServer }) => {
+		if (!isServer) {
+			config.target = "electron-renderer";
+		}
 
-    return config;
-  },
+		return config;
+	},
 };

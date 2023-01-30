@@ -29,6 +29,8 @@ export const color = {
 	black: "#181a1e",
 	gray: "#2c2f36",
 	point: "#CFF7FF",
+	darkPoint: "#57a3b3",
+	red: "#c24100",
 };
 
 export const page = css`

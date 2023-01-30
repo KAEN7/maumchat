@@ -26,7 +26,7 @@ const GradientCirBox = styled.div`
 		border-radius: 50%;
 		filter: blur(1rem);
 		background-image: linear-gradient(to right, #585f6d, #676d7e, #cff7ff);
-		background-size: 110% 110%;
+		background-size: 120% 120%;
 		-webkit-animation: gradient 3s ease infinite;
 		-moz-animation: gradient 3s ease infinite;
 		animation: gradient 3s ease infinite;

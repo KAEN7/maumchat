@@ -6,7 +6,7 @@ import { color } from "../styles/theme";
 const Nav = () => {
 	return (
 		<NavSection>
-			{["userList", "chatRoom"].map((path) => (
+			{["userList", "chatList"].map((path) => (
 				<LinkBtn key={path}>
 					<Link href={`/${path}`}>
 						<Image
@@ -29,8 +29,10 @@ const NavSection = styled.nav`
 	align-items: center;
 	background: ${color.gray};
 	width: 4rem;
+	max-width: 4rem;
+	min-width: 4rem;
 	height: 100%;
-	padding: 1rem;
+	padding: 1.5rem 1rem;
 	box-sizing: border-box;
 	box-shadow: 1px 1px 3px ${color.gray};
 `;

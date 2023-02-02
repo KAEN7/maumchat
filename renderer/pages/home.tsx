@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import styled from "styled-components";
 import { color, page } from "../styles/theme";
-import { auth } from "../lib/firebaseconfig";
+import { auth, db } from "../lib/firebaseconfig";
 import { useRouter } from "next/router";
 
 import {
@@ -18,12 +18,13 @@ import Button from "../components/Button";
 import { useRecoilState } from "recoil";
 
 import { authInfo, toastMessage } from "../store";
+import { doc, setDoc } from "firebase/firestore";
 
 function Home() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [_, setAuth] = useRecoilState(authInfo);
-	const [message, setMessage] = useRecoilState(toastMessage);
+	const [authI, setAuth] = useRecoilState(authInfo);
+	const [_, setMessage] = useRecoilState(toastMessage);
 
 	const router = useRouter();
 
@@ -36,8 +37,14 @@ function Home() {
 			);
 			const { stsTokenManager, uid } = user;
 			setAuth({ uid, email, authToken: stsTokenManager });
-			router.push("/chatRoom");
+			await setDoc(doc(db, "users", email.split("@")[0]), {
+				email,
+				friends: [],
+				chat: [],
+			});
+
 			setMessage("회원가입되셨습니다");
+			router.push("/chatList");
 		} catch (err) {
 			console.error("SignUp ERROR: ", err.message);
 			setMessage(err.message.replace("Firebase: ", ""));
@@ -53,12 +60,16 @@ function Home() {
 			);
 			const { stsTokenManager, uid } = user;
 			setAuth({ uid, email, authToken: stsTokenManager });
-			router.push("/chatRoom");
+			router.push("/chatList");
 		} catch ({ code, message }) {
 			console.error("SignIn ERROR: ", message);
 			setMessage(message.replace("Firebase: ", ""));
 		}
 	};
+
+	useEffect(() => {
+		authI.email && router.push("/chatList");
+	}, []);
 
 	return (
 		<React.Fragment>

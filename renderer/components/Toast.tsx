@@ -61,7 +61,7 @@ const ToastBox = styled.div<IToastBox>`
 	color: ${color.white};
 	cursor: pointer;
 	transform: ${(props) =>
-		props.toggle ? "translateX(0)" : "translateX(20rem)"};
+		props.toggle ? "translateX(0)" : "translateX(21rem)"};
 	transition: all 0.1s ease-in-out 0s;
 `;
 

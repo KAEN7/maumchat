@@ -8,7 +8,7 @@ const Nav = () => {
 		<NavSection>
 			{["userList", "chatList"].map((path) => (
 				<LinkBtn key={path}>
-					<Link href={`/${path}`}>
+					<Link href={`/${path}`} passHref>
 						<Image
 							src={`/icons/${path}.png`}
 							width={40}

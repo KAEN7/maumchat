@@ -77,4 +77,16 @@ export const FormStyle = css`
 	}
 `;
 
+export const Thumb = css`
+	text-align: center;
+	font-size: 1.7rem;
+	font-weight: bold;
+	background: ${color.point};
+	color: ${color.black};
+	width: 2.5rem;
+	height: 2.5rem;
+	min-width: 2.5rem;
+	min-height: 2.5rem;
+`;
+
 export default theme;

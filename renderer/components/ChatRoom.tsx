@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { color } from "../../styles/theme";
+import { Thumb } from "../styles/theme";
 
 interface IChatRoom {
 	onClick: (e: Event) => void;
@@ -10,13 +10,15 @@ interface IChatRoom {
 const ChatRoom = ({ onClick, chat }: IChatRoom) => {
 	const { title, group, content } = chat;
 	const lastContent = content[content.length - 1];
-	const timestamp = new Date(lastContent.timestamp.toDate());
-	const date = timestamp
-		.toISOString()
-		.replace("T", " ")
-		.replace(/\..*/, "")
-		.split(" ")[1]
-		.slice(0, 5);
+	const timestamp = new Date(lastContent?.timestamp?.toDate());
+	const date =
+		!timestamp &&
+		timestamp
+			.toISOString()
+			.replace("T", " ")
+			.replace(/\..*/, "")
+			.split(" ")[1]
+			.slice(0, 5);
 
 	return (
 		<ChatRoomBox onClick={onClick}>
@@ -33,7 +35,7 @@ const ChatRoom = ({ onClick, chat }: IChatRoom) => {
 					<span>{date}</span>
 				</Title>
 				<Content>
-					<span>{lastContent.message}</span>
+					<span>{lastContent?.message ?? ""}</span>
 				</Content>
 			</ChatContent>
 		</ChatRoomBox>
@@ -50,16 +52,9 @@ const ChatRoomBox = styled.li`
 	cursor: pointer;
 
 	.thumb {
-		text-align: center;
-		font-size: 2rem;
-		font-weight: bold;
-		background: ${color.point};
-		color: ${color.black};
+		${Thumb}
+
 		border-radius: 50%;
-		width: 2.5rem;
-		height: 2.5rem;
-		min-width: 2.5rem;
-		min-height: 2.5rem;
 	}
 `;
 

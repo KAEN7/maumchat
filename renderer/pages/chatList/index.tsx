@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { overflowY, page } from "../../styles/theme";
 import Title from "../../components/Title";
-import ChatRoom from "./ChatRoom";
+import ChatRoom from "../../components/ChatRoom";
 import { useRouter } from "next/router";
 
-import tempDB from "../../lib/tempDB.json";
 import { db } from "../../lib/firebaseconfig";
 import { useRecoilState } from "recoil";
 import { authInfo, toastMessage } from "../../store";
-import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const Index = () => {
 	const router = useRouter();
@@ -41,7 +40,7 @@ const Index = () => {
 		<CharRoomSection>
 			<Title>채팅</Title>
 			<ChatList>
-				{chats.map((chat, idx) => (
+				{chats?.map((chat, idx) => (
 					<ChatRoom
 						onClick={() => router.push(`/chatList/${idx}`)}
 						key={`chatroom_${chat.title}`}
